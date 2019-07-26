@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iwhale.congestion.index.dao.spdao.VcciInfoMapper">
+    <select id="qryHistoryXh" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT t.lsh FROM ad_vio t WHERE t.wfsj >
+        to_date(TO_CHAR(#{timestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+
+    <select id="qryWfInfo" parameterType="java.lang.Long" resultType="com.iwhale.congestion.index.dto.VioDataDto">
+        SELECT
+        lsh,xh,jyzt,wfsj,wfdd,wfdz,wfsd,wfxs,wflx,cjjg,cjmj,sjly,hphm,hpzl,sbbh,ftp,ftpurl,lxid,fx,zqmj,dljg,filepath1,filepath2,filepath3,filepath4,filepath5,ftpzt,wzsj,jpgsj,upuser,jpgzt,spotsn,zjlb1,zjlb2,zjlb3,zjlb4,zjlb5,ycsj
+        FROM ad_vio
+        where wfsj >
+        to_date(TO_CHAR(#{beignTimestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+
+</mapper>

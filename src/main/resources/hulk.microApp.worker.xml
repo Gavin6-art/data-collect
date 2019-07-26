@@ -1,0 +1,7 @@
+<hulk>
+    <workerGroup groupName="vio-jcjGroup" desc="违法-事故数据采集">
+        <exe jvmName="vio-jcj" jvmArgs="-Xms256m -Xmx512m">
+            <worker workerName="vio-jcj" class="org.springframework.boot.loader.JarLauncher"   springboot="true"/>
+        </exe>
+    </workerGroup>
+</hulk>

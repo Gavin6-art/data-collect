@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iwhale.congestion.index.dao.gadao.AcciInfoMapper">
+    <select id="qryHistoryXh" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT t.xh FROM cwxw.ningbo_acci_info t WHERE t.sbsj >
+        to_date(TO_CHAR(#{timestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+
+    <select id="qryWxSgInfo" parameterType="java.lang.Long" resultType="com.iwhale.congestion.index.dto.AcciInfoDataDto">
+        SELECT
+        xh,sbsj,sgdd,sgjd,sgwd,sbyh,sjhm,bz,ylzd1,ylzd2,ylzd3,ylzd4,ylzd5,sgxzq,cllc,rdyj
+        FROM cwxw.ningbo_acci_info
+        where sbsj >
+        to_date(TO_CHAR(#{beignTimestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+
+</mapper>

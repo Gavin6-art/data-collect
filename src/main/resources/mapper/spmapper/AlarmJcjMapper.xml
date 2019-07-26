@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iwhale.congestion.index.dao.spdao.AlarmJcjMapper">
+    <select id="qryHistoryJJD" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT t.jjdbh FROM AD_JCJ_JJD t WHERE t.bjsj >
+        to_date(TO_CHAR(#{timestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+
+    <select id="qryHistoryCJD" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT t.cjdbh FROM AD_JCJ_CJD t WHERE t.bjsj >
+        to_date(TO_CHAR(#{timestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+
+    <select id="qryjjd" parameterType="java.lang.Long" resultType="com.iwhale.congestion.index.dto.AlarmJJDDateDto">
+        SELECT
+        jjdbh, zjjdbh,
+        bjfsdm, jjlxdm,
+        jjdcllxdm, jjtbh,
+        jjdwdm, jjdwmc,
+        jjybh, jjyxm, bjsj,
+        bjdh, bjrxm, bjrxb,
+        afxzqh, afdd, bjnr,
+        sjgxsj, jjdzt,
+        sjdwdm, gxdwdm,
+        dhdwjd, dhdwwd,
+        fxdwjd, fxdwwd,
+        bjsdxq, bjsdxs,
+        bjsdfz
+        FROM AD_JCJ_JJD
+        where bjsj >
+        to_date(TO_CHAR(#{beignTimestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+
+    <select id="qrycjd" parameterType="java.lang.Long" resultType="com.iwhale.congestion.index.dto.AlarmCJDDateDto">
+        SELECT
+        cjdbh, jjdbh,
+        zcjdbh, xzqh,
+        cjdwbm, cjdwmc,
+        cjybh, cjyxm,
+        cjtbh, cjtip, cjsj,
+        cjyj, dhcjfs, djjcjfs,
+        dxxcjfs, sjdwdm, sjdwmc,
+        sjdwip, sjybh,
+        sjyxm, pdddsj,
+        pdjssj, ddxcsj,
+        cjwbsj, cjdzt,
+        jscjdsx, ddxcsx,
+        nrfksx, ccwbsx,
+        thbz, yjbz,
+        sjgxsj, jwtcjfs,
+        xzzl, bjsj,
+        qssc, ddxcsc,
+        qscs, ddxccs,
+        cjwbcs
+        FROM AD_JCJ_CJD
+        where bjsj >
+            to_date(TO_CHAR(#{beignTimestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+</mapper>

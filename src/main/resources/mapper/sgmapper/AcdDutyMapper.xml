@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.iwhale.congestion.index.dao.sgdao.AcdDutyMapper">
+    <select id="qryHistoryDutySgbh" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT a.sgbh FROM EX_ACD_FILE a,EX_ACD_DUTY b where a.sgbh=b.sgbh and a.sgfssj >
+        to_date(TO_CHAR(#{timestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+
+    <select id="qryDutyInfo" parameterType="java.lang.Long" resultType="com.iwhale.congestion.index.dto.AcdDutyDto">
+        SELECT
+        b.sgbh,b.wsbh,b.dsfqk,b.jbss,b.rdnr,b.baryj,b.zjyj,b.cbr1,b.cbr2,b.xbrq,b.tqsprq,b.sprq,b.spr,b.jbr,b.jbrjh,b.xbrjh,b.tbrq,b.wszt,b.gwbh,b.xcyy,b.xcyy1,b.xcyy2,b.gabwsbh,b.wsbhbgs
+        FROM EX_ACD_FILE a,EX_ACD_DUTY b where a.sgbh=b.sgbh and a.sgfssj >
+        to_date(TO_CHAR(#{beignTimestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+
+    <select id="qryHistoryDutySimpleSgbh" parameterType="java.lang.Long" resultType="java.lang.String">
+        SELECT a.sgbh FROM EX_ACD_FILE a,EX_ACD_DUTYSIMPLEWRIT b where a.sgbh=b.sgbh and a.sgfssj >
+        to_date(TO_CHAR(#{timestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+
+    <select id="qryDutySimpleInfo" parameterType="java.lang.Long" resultType="com.iwhale.congestion.index.dto.AcdDutySimpleWritDto">
+        SELECT
+        b.wsbh,b.sgbh,b.glbm,b.sgfssj,b.lh,b.lm,b.sgdd,b.tq,b.sgrdyy,b.jtsgss,b.tjjg,b.zrjtjjg,b.bar1,b.bar2,b.jbr,b.jbrjh,b.xbrjh,b.tbrq,b.xzqh,b.sszd,b.sxxz,b.sgdabh,b.zjccss,b.zmtj,
+        b.dllx,b.lmjg,b.lkldlx,b.dlxx,b.sgdfdd,b.qtjtaqssbq,b.ssrs,b.gwbh,b.tbr,b.djbh,b.jbbh,b.sgdh,b.kysg
+        FROM EX_ACD_FILE a,EX_ACD_DUTYSIMPLEWRIT b where a.sgbh=b.sgbh and a.sgfssj >
+        to_date(TO_CHAR(#{beignTimestamp}/ (1000 * 60 * 60 * 24) + TO_DATE('1970-01-01 08:00:00', 'YYYY-MM-DD HH24:MI:SS'), 'YYYY-MM-DD HH24:MI:SS'),'YYYY-MM-DD HH24:MI:SS')
+    </select>
+
+</mapper>
